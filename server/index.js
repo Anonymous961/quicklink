@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express=require("express")
 const mongoose=require("mongoose")
 const cors=require("cors")
@@ -12,4 +13,14 @@ app.use((req,res,next)=>{
     next();
 })
 
-mongoose.connect();
+// console.log(process.env.URI);
+mongoose.connect(process.env.MONGO_URI)
+    .then(()=>{
+        console.log("connected to DB");
+        app.listen(process.env.PORT,()=>{
+            console.log("server running at port"+ process.env.PORT)
+        })
+    })
+    .catch((err)=>{
+        console.log(err.message);
+    })
