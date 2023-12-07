@@ -10,8 +10,8 @@ const Home = () => {
     const handleSubmit=async(e: FormEvent)=>{
         e.preventDefault();
         try{
-            const res= await axios.post("http:localhost:4000/",{Headers:{
-                "Content-type":"application/json"
+            const res= await axios.post("http://localhost:4000/qrgen/gen",{links},{headers:{
+                "Content-Type":"application/json"
             }})
             console.log(res.data);
         }catch(err:unknown){
