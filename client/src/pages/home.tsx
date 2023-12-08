@@ -2,6 +2,7 @@ import { FormEvent, useState } from "react";
 import axios from "axios";
 import { v4 as uuid4 } from "uuid";
 import { Link } from "react-router-dom";
+import CopyToClipboardBtn from "../components/copytoclip";
 
 const Home = () => {
   const [key, setKey] = useState("");
@@ -10,8 +11,7 @@ const Home = () => {
     { key: "github", value: "www.github.com/anonymous961", id: "1" },
   ]);
   const [qr, setQr] = useState("");
-  const [dataId,setDataid]=useState("");
-
+  const [dataId, setDataid] = useState("");
 
   // console.log(import.meta.env.VITE_FRONT_URL);
   const handleRoute = async (id: string) => {
@@ -97,7 +97,11 @@ const Home = () => {
       {qr && (
         <div>
           <img src={qr} width="100px" height="100px" />
-          <p className="bg-white m-2 rounded-md text-black p-2">{import.meta.env.VITE_FRONT_URL}/display/{dataId}</p>
+          <div className="bg-white m-2 rounded-md text-black p-2">
+            {import.meta.env.VITE_FRONT_URL}/display/{dataId}
+            {/* <CopyToClipboardBtn text={`${import.meta.env.VITE_FRONT_URL}/display/${dataId}`}/> */}
+          </div>
+          {/* <CopyToClipboardBtn text={`${import.meta.env.VITE_FRONT_URL}/display/${dataId}`}/> */}
           <Link to={`/display/${dataId}`}>Check</Link>
         </div>
       )}
