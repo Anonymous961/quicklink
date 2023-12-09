@@ -24,7 +24,7 @@ const CopyToClipboardBtn:React.FC<copytoclip> = ({text}) => {
     },[text])
 
     return ( 
-        <button ref={ref} data-clipboard-text={text}>Copy to Clipboard</button>
+        <button ref={ref} data-clipboard-text={text} className='shadow-2xl p-2 m-2 rounded-md bg-black text-white hover:text-yellow-500'>Copy to Clipboard</button>
      );
 }
  

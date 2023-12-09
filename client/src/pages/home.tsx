@@ -9,19 +9,21 @@ import AddDesp from "../components/addDesp";
 
 const Home = () => {
   const [key, setKey] = useState("");
-  const [title,setTitle]=useState("Add a title");
-  const [description,setDesp]=useState("")
+  const [title, setTitle] = useState("Add a title");
+  const [description, setDesp] = useState("");
   const [value, setValue] = useState("");
   const [qr, setQr] = useState("");
   const [dataId, setDataid] = useState("");
-  const [toggle,setToggle]=useState(false);
+  const [toggle, setToggle] = useState(false);
   const [links, setLinks] = useState([
     { key: "github", value: "www.github.com/anonymous961", id: "1" },
   ]);
 
   const handleRoute = async (id: string) => {
     try {
-      const res = await axios.get(import.meta.env.VITE_BACK_URL+"/qrgen/getLinks/" + id);
+      const res = await axios.get(
+        import.meta.env.VITE_BACK_URL + "/qrgen/getLinks/" + id
+      );
       console.log(res.data);
       setQr(res.data.qr);
       setDataid(res.data.id);
@@ -35,8 +37,8 @@ const Home = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        import.meta.env.VITE_BACK_URL+"/qrgen/gen",
-        { title,links,description },
+        import.meta.env.VITE_BACK_URL + "/qrgen/gen",
+        { title, links, description },
         {
           headers: {
             "Content-Type": "application/json",
@@ -60,24 +62,46 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center">
-      <AddDesp setTitle={setTitle} title={title} toggle={toggle} setToggle={setToggle} description={description} setDesp={setDesp}/>
-      <ShowList links={links} setLinks={setLinks}/>
+    <div className="flex flex-col justify-center items-center">
+      <AddDesp
+        setTitle={setTitle}
+        title={title}
+        toggle={toggle}
+        setToggle={setToggle}
+        description={description}
+        setDesp={setDesp}
+      />
+      <ShowList links={links} setLinks={setLinks} />
+      {/* {links && } */}
       <LinkForm
         handleLinks={handleLinks}
         linkKey={key}
         value={value}
         setKey={setKey}
-        setValue={setValue}/>
-      <button onClick={handleSubmit}>Generate</button>
+        setValue={setValue}
+      />
+      <button
+        className="shadow-xl p-2 bg-indigo-600 rounded-md hover:bg-indigo-700 text-white hover:font-medium m-3"
+        onClick={handleSubmit}
+      >
+        Generate
+      </button>
       {qr && (
-        <div>
-          <img src={qr} width="100px" height="100px" />
+        <div className="flex justify-center">
+          <img src={qr} width="150px" height="150px" />
           <div className="bg-white m-2 rounded-md text-black p-2">
             {import.meta.env.VITE_FRONT_URL}/display/{dataId}
+            <br />
+            <CopyToClipboardBtn
+              text={`${import.meta.env.VITE_FRONT_URL}/display/${dataId}`}
+            />
+            <Link
+              to={`/display/${dataId}`}
+              className="p-2 m-1 bg-blue-500 rounded-md shadow-xl text-white"
+            >
+              Check
+            </Link>
           </div>
-            <CopyToClipboardBtn text={`${import.meta.env.VITE_FRONT_URL}/display/${dataId}`}/>
-          <Link to={`/display/${dataId}`}>Check</Link>
         </div>
       )}
     </div>

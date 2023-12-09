@@ -18,13 +18,13 @@ const AddDesp: React.FC<despProps> = ({
   setDesp,
 }) => {
   return (
-    <div>
+    <div className="flex flex-col m-5 p-3 w-1/2 rounded-md bg-slate-600 text-black">
       <input
-        className="text-2xl text-center"
+        className="text-3xl text-center text-white bg-slate-600  m-5"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
         type="text"
-        placeholder="Add a title"
+        placeholder="Add a Title"
       />
       <label className="relative inline-flex items-center mb-5 cursor-pointer">
         <input
