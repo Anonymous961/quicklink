@@ -10,6 +10,8 @@ interface Link {
 }
 
 const Display = () => {
+  const [title,setTitle]=useState<string>("");
+  const [desp,setDesp]=useState<string>("");
   const [links, setLinks] = useState<Link[]>([]);
   const [qr, setQR] = useState<string>("");
   const { id } = useParams<{ id: string }>();
@@ -21,8 +23,10 @@ const Display = () => {
         `${import.meta.env.VITE_BACK_URL}/qrgen/getLinks/${id}`
       );
       setLinks(res.data.data.links);
-      console.log(links);
+      setTitle(res.data.data.title);
+      setDesp(res.data.data.description);
       setQR(res.data.qr);
+      console.log(links);
     } catch (err) {
       console.log(err);
     }
@@ -34,7 +38,9 @@ const Display = () => {
 
   return (
     <div>
-      <h2>Display Page</h2>
+      {title? <h2>{title}</h2>:
+      <h2>Display Page</h2>}
+      {desp && <h2>{desp}</h2>}
       {qr && <img src={qr} width={"200px"} height={"200px"} />}
       {links &&
         links.map((link) => {

@@ -4,13 +4,13 @@ const mongoose=require("mongoose");
 
 const genQR=async (req,res)=>{
     // console.log("this is working")
-    const {links}=req.body;
+    const {title,links,description}=req.body;
     // console.log(typeof(links))
     if(!links){
         return res.status(400).send({"message":"No data provided"})
     }
     try{
-        const link= await linkData.create({links});
+        const link= await linkData.create({title,links,description});
         console.log("link id:"+link.id);
         res.status(200).json({"message":"data successfully submitted to db",id:link.id});
     }catch(err){
