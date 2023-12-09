@@ -10,7 +10,6 @@ interface Link {
 }
 
 const Display = () => {
-  // console.log(props)
   const [links, setLinks] = useState<Link[]>([]);
   const [qr, setQR] = useState<string>("");
   const { id } = useParams<{ id: string }>();
@@ -21,7 +20,6 @@ const Display = () => {
       const res = await axios.get(
         `${import.meta.env.VITE_BACK_URL}/qrgen/getLinks/${id}`
       );
-      // console.log(res.data)
       setLinks(res.data.data.links);
       console.log(links);
       setQR(res.data.qr);
