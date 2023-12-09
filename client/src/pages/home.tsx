@@ -11,6 +11,7 @@ const Home = () => {
     { key: "github", value: "www.github.com/anonymous961", id: "1" },
   ]);
   const [qr, setQr] = useState("");
+  const [url,setUrl]=useState("");
   const [dataId, setDataid] = useState("");
 
   // console.log(import.meta.env.VITE_FRONT_URL);
@@ -20,6 +21,7 @@ const Home = () => {
       console.log(res.data);
       setQr(res.data.qr);
       setDataid(res.data.id);
+      setUrl(import.meta.env.VITE_FRONT_URL+"/display/"+dataId);
     } catch (err: unknown) {
       console.log("here is problem");
       console.log(err);
@@ -101,7 +103,7 @@ const Home = () => {
             {import.meta.env.VITE_FRONT_URL}/display/{dataId}
             {/* <CopyToClipboardBtn text={`${import.meta.env.VITE_FRONT_URL}/display/${dataId}`}/> */}
           </div>
-          {/* <CopyToClipboardBtn text={`${import.meta.env.VITE_FRONT_URL}/display/${dataId}`}/> */}
+          <CopyToClipboardBtn text={url}/>
           <Link to={`/display/${dataId}`}>Check</Link>
         </div>
       )}

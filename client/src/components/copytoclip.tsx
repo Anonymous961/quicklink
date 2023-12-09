@@ -12,7 +12,12 @@ const CopyToClipboardBtn:React.FC<copytoclip> = ({text}) => {
         const clipboard=new ClipboardJS(ref.current!, {
             text:()=> text,
         });
-        alert("Copied to Clipboard!")
+
+        clipboard.on('success',()=>{
+            alert("Copied to Clipboard!")
+            clipboard.destroy();
+        })
+        
         return ()=>{
             clipboard.destroy();
         }
