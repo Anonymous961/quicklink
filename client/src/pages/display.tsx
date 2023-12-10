@@ -43,7 +43,7 @@ const Display = () => {
         <h2 className="text-3xl text-white bg-slate-600 rounded-md my-2 p-3">
           {title}
         </h2>
-        <div className="bg-slate-600 p-5 rounded-md">
+        <div className="bg-slate-600 p-3 rounded-md">
           {desp && <p className="text-white">{desp}</p>}
           <h2 className="my-5 text-4xl">Links</h2>
           {links &&
@@ -51,7 +51,7 @@ const Display = () => {
               return (
                 <div
                   key={link.id}
-                  className="bg-slate-400 rounded-md grid grid-cols-1 grid-rows-1 sm:grid-rows-2 sm:grid-col-2 lg:grid-cols-3 lg:grid-rows-1"
+                  className="bg-slate-400 my-3 rounded-md grid grid-cols-1 grid-rows-1 sm:grid-rows-2 sm:grid-col-2 lg:grid-cols-3 lg:grid-rows-1"
                 >
                   <h2 className="rounded-md bg-white p-2 lg:col-span-1 m-2">
                     {link.key}

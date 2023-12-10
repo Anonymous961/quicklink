@@ -71,45 +71,52 @@ const Home = () => {
         description={description}
         setDesp={setDesp}
       />
-      <ShowList links={links} setLinks={setLinks} />
-      {/* {links && } */}
-      <LinkForm
-        handleLinks={handleLinks}
-        linkKey={key}
-        value={value}
-        setKey={setKey}
-        setValue={setValue}
-      />
-      <div className="flex justify-center">
-        <button
-          className=" shadow-xl p-2 bg-indigo-600 rounded-md hover:bg-indigo-500 text-white hover:font-medium m-5"
-          onClick={handleSubmit}
-        >
-          Generate
-        </button>
-      </div>
-      {qr && (
-        <div className="grid sm:grid-cols-1 ">
-          <div className="row-span-1 bg-white mx-w-sm m-2 rounded-md text-black p-2 break-normal overflow-x-hidden">
-            <div className="row-span-1 flex justify-center">
-              <img src={qr} width="200px" height="200px" />
+      <div className="grid grid-cols-1 lg:grid-cols-2 sm:grid-cols-1">
+        <div className="grid lg:col-span-1 sm:row-span-1">
+          <ShowList links={links} setLinks={setLinks} />
+          {/* {links && } */}
+          {qr && (
+            <div className="grid sm:grid-cols-1 ">
+              <div className="row-span-1 bg-white mx-w-sm m-2 rounded-md text-black p-2 break-normal overflow-x-hidden">
+                <div className="row-span-1 flex justify-center">
+                  <img src={qr} width="200px" height="200px" />
+                </div>
+                <p className="break-words max-w-sm">
+                  {import.meta.env.VITE_FRONT_URL}/display/{dataId}
+                </p>
+                <br />
+                <CopyToClipboardBtn
+                  text={`${import.meta.env.VITE_FRONT_URL}/display/${dataId}`}
+                />
+                <Link
+                  to={`/display/${dataId}`}
+                  className="p-2 m-1  bg-blue-500 rounded-md shadow-xl text-white"
+                >
+                  Check
+                </Link>
+              </div>
             </div>
-            <p className="break-words max-w-sm">
-              {import.meta.env.VITE_FRONT_URL}/display/{dataId}
-            </p>
-            <br />
-            <CopyToClipboardBtn
-              text={`${import.meta.env.VITE_FRONT_URL}/display/${dataId}`}
-            />
-            <Link
-              to={`/display/${dataId}`}
-              className="p-2 m-1  bg-blue-500 rounded-md shadow-xl text-white"
+          )}
+        </div>
+
+        <div className="grid lg:col-span-1 sm:row-span-1">
+          <LinkForm
+            handleLinks={handleLinks}
+            linkKey={key}
+            value={value}
+            setKey={setKey}
+            setValue={setValue}
+          />
+          <div className="flex justify-center">
+            <button
+              className=" shadow-xl p-2 max-h-16 bg-indigo-600 rounded-md hover:bg-indigo-500 text-white hover:font-medium m-5"
+              onClick={handleSubmit}
             >
-              Check
-            </Link>
+              Generate
+            </button>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

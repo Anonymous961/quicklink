@@ -12,13 +12,14 @@ interface ShowListProps {
 }
 const ShowList: React.FC<ShowListProps> = ({ links, setLinks }) => {
   return (
-    <div className="m-5 rounded-md p-3 bg-cyan-700 text-white">
+    <div className="m-3 rounded-md p-1 bg-cyan-700 text-white">
       {links.map((link) => (
-        <div className="flex flex-row justify-between" key={link.id}>
-          <p className="m-2 rounded-md p-1 w-1/6 bg-cyan-500 overflow-x-auto">{link.key}</p>
-          <p className="m-2 rounded-md p-1 w-4/6 bg-cyan-500 truncate ">{link.value}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-8 bg-cyan-600 p-2 rounded-md m-2" key={link.id}>
+          <p className="m-2 rounded-md p-1  bg-cyan-500 lg:col-span-2 sm:row-span-1">{link.key}</p>
+          <p className="m-2 rounded-md p-1 bg-cyan-500 truncate lg:col-span-5  sm:row-span-1">{link.value}</p>
+          
           <button
-            className="float-right"
+            className="lg:col-span-1"
             onClick={() => {
               setLinks(() => {
                 return links.filter((l) => l.id !== link.id);
@@ -31,7 +32,7 @@ const ShowList: React.FC<ShowListProps> = ({ links, setLinks }) => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 float-right"
             >
               <path
                 strokeLinecap="round"
