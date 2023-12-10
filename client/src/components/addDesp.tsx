@@ -18,7 +18,7 @@ const AddDesp: React.FC<despProps> = ({
   setDesp,
 }) => {
   return (
-    <div className="flex flex-col m-5 p-3 w-1/2 rounded-md bg-slate-600 text-black">
+    <div className="flex flex-col m-5 p-3 rounded-md bg-slate-600 text-black">
       <input
         className="text-3xl text-center text-white bg-slate-600  m-5"
         onChange={(e) => setTitle(e.target.value)}
@@ -40,7 +40,7 @@ const AddDesp: React.FC<despProps> = ({
       </label>
       {toggle && (
         <input
-          className=""
+          className="m-2 p-2 rounded-md"
           type="text"
           onChange={(e) => setDesp(e.target.value)}
           value={description}

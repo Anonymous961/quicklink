@@ -12,11 +12,11 @@ interface ShowListProps {
 }
 const ShowList: React.FC<ShowListProps> = ({ links, setLinks }) => {
   return (
-    <div className="m-5 rounded-md p-3 w-1/2 bg-cyan-700">
+    <div className="m-5 rounded-md p-3 bg-cyan-700 text-white">
       {links.map((link) => (
         <div className="flex flex-row justify-between" key={link.id}>
-          <p className="m-2 rounded-md p-1 w-1/6 bg-cyan-300 overflow-x-auto">{link.key}</p>
-          <p className="m-2 rounded-md p-1 w-4/6 bg-cyan-300 truncate ">{link.value}</p>
+          <p className="m-2 rounded-md p-1 w-1/6 bg-cyan-500 overflow-x-auto">{link.key}</p>
+          <p className="m-2 rounded-md p-1 w-4/6 bg-cyan-500 truncate ">{link.value}</p>
           <button
             className="float-right"
             onClick={() => {
